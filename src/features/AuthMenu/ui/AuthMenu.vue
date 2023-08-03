@@ -1,0 +1,67 @@
+<script setup lang="ts">
+    import { ref } from 'vue'
+
+    import { Welcome } from '@features/AuthMenu'
+    import config from '@shared/routes/config'
+
+    const isAuth = ref(true)
+</script>
+
+<template>
+    <div class="auth-menu">
+        <template v-if="isAuth">
+            <router-link 
+                :to="config.login"
+                class="auth-link"
+                :class="{
+                    'active': $route.href === config.login
+                }"
+            >
+                Вход
+            </router-link>
+            <router-link 
+                :to="config.registration"
+                class="auth-link"
+                :class="{
+                    'active': $route.href === config.registration
+                }"
+            >
+                Регистрация
+            </router-link>
+        </template>
+        <template v-else>
+            <Welcome />
+            <router-link 
+                :to="config.login"
+                class="auth-link"
+            >
+                Выход
+            </router-link>
+        </template>
+    </div>
+</template>
+
+<style scoped lang="scss">
+    .auth-menu {
+        min-width: 200px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+    }
+
+    .auth-link {
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #FFFFFF;
+        transition: all 0.3s ease-out;
+    }
+
+    .active {
+        color: $light-green;
+    }
+
+    .active:hover, .auth-link:hover {
+        color: $light-green;
+    }
+</style>

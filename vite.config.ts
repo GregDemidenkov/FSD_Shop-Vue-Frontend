@@ -14,5 +14,12 @@ export default defineConfig({
       '@entities': path.resolve(__dirname, './src/entities'),
       '@shared': path.resolve(__dirname, './src/shared'),
     },
-  }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "@app/styles/constants.scss";`
+      }
+    }
+  },
 })
