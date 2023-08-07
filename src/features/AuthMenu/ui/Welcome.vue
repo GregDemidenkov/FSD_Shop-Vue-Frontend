@@ -1,9 +1,12 @@
 <script setup lang="ts">
+    import { WelcomeProps } from '@features/AuthMenu'
 
+
+    const props = defineProps<WelcomeProps>()
 </script>
 
 <template>
-    <p>Welocme! Gregor</p>
+    <p>Welocme! {{ props.name }}</p>
 </template>
 
 <style scoped lang="scss">

@@ -21,6 +21,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     height: 100%;
     width: 100%; 
+    background-color: $background;
 }
 
 #root {
@@ -31,6 +32,7 @@ body {
 a {
     text-decoration: none;
     font-family: 'Quicksand', sans-serif;
+    color: $light-green;
 }
 
 li {

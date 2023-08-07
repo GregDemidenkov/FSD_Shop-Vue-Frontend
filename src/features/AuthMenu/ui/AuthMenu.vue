@@ -1,20 +1,24 @@
 <script setup lang="ts">
-    import { ref } from 'vue'
-
     import { Welcome } from '@features/AuthMenu'
+    import { useAuthStore } from '@entities/auth/model/AuthStore'
     import config from '@shared/routes/config'
 
-    const isAuth = ref(true)
+
+    const authStore = useAuthStore()
+
+    const logoutHandler = () => {
+        authStore.logout()
+    }
 </script>
 
 <template>
     <div class="auth-menu">
-        <template v-if="isAuth">
+        <template v-if="!authStore.isAuth">
             <router-link 
                 :to="config.login"
                 class="auth-link"
                 :class="{
-                    'active': $route.href === config.login
+                    'active': $route.path === config.login
                 }"
             >
                 Вход
@@ -23,15 +27,18 @@
                 :to="config.registration"
                 class="auth-link"
                 :class="{
-                    'active': $route.href === config.registration
+                    'active': $route.path === config.registration
                 }"
             >
                 Регистрация
             </router-link>
         </template>
         <template v-else>
-            <Welcome />
+            <div class="me-4">
+                <Welcome :name="authStore.user.name"/>
+            </div>
             <router-link 
+                @click="logoutHandler"
                 :to="config.login"
                 class="auth-link"
             >
