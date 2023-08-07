@@ -1,14 +1,14 @@
 <script setup lang="ts">
     import { onMounted, reactive, watch } from 'vue'
+    import { useRouter } from 'vue-router'
 
-    import router from '@app/rootRouter'
     import { RegistrationDto } from '@features/RegistrationForm'
     import { useAuthStore } from '@entities/auth/model/AuthStore'
     import { theme } from '@shared/styles/constants'
     import Message from '@shared/ui/Message.vue'
     import config from '@shared/routes/config'
 
-
+    const router = useRouter()
     const authStore = useAuthStore()
     const initialState = {
         name: '',
@@ -45,6 +45,7 @@
             v-model="state.name"
             label="Имя"
             variant="outlined"
+            prepend-inner-icon="mdi-account"
             required
         />
 
@@ -53,6 +54,7 @@
             label="Почта"
             variant="outlined"
             type="email"
+            prepend-inner-icon="mdi-email"
             required
         />
 
@@ -60,6 +62,7 @@
             v-model="state.password"
             label="Пароль"
             variant="outlined"
+            prepend-inner-icon="mdi-lock"
             type="password"
             required
         />

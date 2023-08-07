@@ -1,14 +1,14 @@
 <script setup lang="ts">
     import { reactive, watch } from 'vue'
+    import { useRouter } from 'vue-router'
     
-    import router from '@app/rootRouter'
     import { LoginDto } from '@features/LoginForm'
     import { useAuthStore } from '@entities/auth/model/AuthStore'
     import config from '@shared/routes/config'
     import { theme } from '@shared/styles/constants'
     import Message from '@shared/ui/Message.vue'
 
-
+    const router = useRouter()
     const authStore = useAuthStore()
     const initialState = {
         email: '',
@@ -24,7 +24,7 @@
         () => authStore.isAuth,
         () => {
             router.push(config.catalog)
-        },
+        }
     )
 </script>
 
@@ -40,6 +40,7 @@
             v-model="state.email"
             label="Почта"
             variant="outlined"
+            prepend-inner-icon="mdi-email"
             type="email"
             required
         />
@@ -48,6 +49,7 @@
             v-model="state.password"
             label="Пароль"
             variant="outlined"
+            prepend-inner-icon="mdi-lock"
             type="password"
             required
         />
