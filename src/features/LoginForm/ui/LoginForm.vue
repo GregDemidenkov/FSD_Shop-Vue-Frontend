@@ -34,8 +34,9 @@
             class="mb-4"
             v-if="authStore.message.type"
             :type="authStore.message.type"
-            :text="authStore.message.text"
-        />
+        >
+            {{ authStore.message.text }}
+        </Message>
         <v-text-field
             v-model="state.email"
             label="Почта"

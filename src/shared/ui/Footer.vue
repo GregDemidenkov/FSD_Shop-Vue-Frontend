@@ -4,8 +4,7 @@
 
 <template>
     <v-footer 
-        app 
-        name="footer" 
+        app
         :color="theme.lightGray"
         class="footer"
     >
@@ -16,7 +15,9 @@
 
 <style scoped lang="scss">
     .footer {
+        position: static !important;
         width: 100%;
+        height: 64px;
         padding: 20px 0;
         display: flex;
         justify-content: center;

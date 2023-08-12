@@ -3,7 +3,7 @@
     import { useRouter } from 'vue-router'
 
     import { RegistrationDto } from '@features/RegistrationForm'
-    import { useAuthStore } from '@entities/auth/model/AuthStore'
+    import { useAuthStore } from '@entities/auth'
     import { theme } from '@shared/styles/constants'
     import Message from '@shared/ui/Message.vue'
     import config from '@shared/routes/config'
@@ -39,8 +39,9 @@
             class="mb-4"
             v-if="authStore.message.type === 'error'"
             :type="authStore.message.type"
-            :text="authStore.message.text"
-        />
+        >
+            {{ authStore.message.text }}
+        </Message>
         <v-text-field
             v-model="state.name"
             label="Имя"

@@ -6,9 +6,19 @@
 <template>
     <v-alert
         :type="props.type"
-        :text="props.text"
-        closable
         variant="tonal"
-        icon="none"
-    />
+        class="message"
+    >
+        <slot />
+    </v-alert>
 </template>
+
+<style scoped lang="scss">
+    .message {
+        padding: 10px;
+        font-size: 13px;
+        p {
+            width: 100%;
+        }
+    }
+</style>
