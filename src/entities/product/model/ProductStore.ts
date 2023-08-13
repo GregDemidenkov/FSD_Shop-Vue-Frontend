@@ -1,8 +1,7 @@
-import { defineStore } from "pinia"
 import { ref } from "vue"
+import { defineStore } from "pinia"
 
-import { Product, Sort } from '@entities/product'
-import ProductService from "../api/ProductService"
+import { ProductService, Product, Sort } from '@entities/product'
 
 
 export const useProductStore = defineStore("productStore", () => {
@@ -11,9 +10,15 @@ export const useProductStore = defineStore("productStore", () => {
     const activeProducts = ref<string[]>([])
     const isLoading = ref<boolean>(false)
 
+    
     const setSort = (sortValue: Sort) => {
         sort.value = sortValue
     }
+
+    const setActiveProducts = (productsId: string[]) => {
+        activeProducts.value = productsId
+    }
+
 
     const getProducts = async () => {
         isLoading.value = true
@@ -33,6 +38,7 @@ export const useProductStore = defineStore("productStore", () => {
         activeProducts,
         isLoading,
         setSort,
+        setActiveProducts,
         getProducts
     }
 

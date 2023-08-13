@@ -10,11 +10,3 @@ export type UserOrder = {
     check: number,
     status: 'pending' | 'closed'
 }
-
-export type AddProductOrderDto = {
-    userId: string,
-    productOrder: {
-        id: string,
-        count: number
-    }
-}

@@ -1,13 +1,26 @@
 <script setup lang="ts">
+    import { watch } from 'vue'
+
     import { CatalogProps } from '@widgets/Catalog'
     import { AddToCart } from '@features/AddToCart'
     import { SortProducts } from '@features/SortProducts'
-    import { ProductCard } from '@entities/product'
+    import { ProductCard, useProductStore } from '@entities/product'
     import { useAuthStore } from '@entities/auth'
+    import { useActiveProducts } from '@shared/model/useActiveProducts'
+    import Message from '@shared/ui/Message.vue'
 
 
     const props = defineProps<CatalogProps>()
     const authStore = useAuthStore()
+    const productStore = useProductStore()
+
+    watch(
+        () => authStore.isAuth === true,
+        () => {
+            const { getActiveProducts } = useActiveProducts(authStore.user.id)
+            getActiveProducts()
+        }
+    )
 </script>
 
 <template>
@@ -31,10 +44,18 @@
                 :isAuth="authStore.isAuth"
             >
                     <template v-slot:action>
+
                         <AddToCart
+                            v-if="!productStore.activeProducts.includes(product._id)"
                             :product-id="product._id"
                             :count="product.count"
                         />
+                        <Message
+                            v-else 
+                            type="info"
+                        >
+                            Товар добавлен в корзину
+                        </Message>
                     </template>
             </ProductCard>
             </div>
