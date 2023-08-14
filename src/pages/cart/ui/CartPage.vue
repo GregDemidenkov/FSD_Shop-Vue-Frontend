@@ -2,6 +2,7 @@
     import { watch } from 'vue'
 
     import { EmptyCart, EmptyCartNavigation } from '@pages/cart'
+    import { CartTable } from '@widgets/CartTable'
     import { ClearCart } from '@features/ClearCart'
     import { useAuthStore } from '@entities/auth'
     import { useCartStore } from '@entities/cart'
@@ -39,7 +40,7 @@
         >
             <ClearCart :userOrderId="cartStore.userOrderId"/>
         </v-row>
-        
+        <CartTable :productOrders="cartStore.productOrders"/>
     </div>
 </template>
 

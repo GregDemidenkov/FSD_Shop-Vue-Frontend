@@ -26,7 +26,3 @@ export type ProductInfoProps = {
         price: number
     }
 }
-
-export type ProductRowProps = {
-    product: Product
-}

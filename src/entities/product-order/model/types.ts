@@ -24,3 +24,13 @@ export type ChangeCountProductOrderDto = {
     count: number,
     action: "delete" | "add"
 }
+
+export type ProductRowProps = {
+    productInfo: {
+        name: string,
+        img: string,
+        country: string,
+        carats: number,
+        price: number
+    }
+}
