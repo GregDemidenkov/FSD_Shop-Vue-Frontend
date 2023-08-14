@@ -1,4 +1,4 @@
-# FSD_Shop-Vue-Frontend (in developing...)
+# FSD_Shop-Vue-Frontend
 
 <br/>
 
