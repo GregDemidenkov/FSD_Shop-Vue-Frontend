@@ -43,6 +43,21 @@ export const useCartStore = defineStore("cartStore", () => {
         }
     }
 
+    const checkout = async () => {
+        isLoading.value = true
+        try {
+            await UserOrderService.checkout(userOrderId.value)
+            
+            clearState()
+
+            return true
+        } catch(error) {
+            return false
+        } finally {
+            isLoading.value = false
+        }
+    }
+
 
     return {
         userOrderId,
@@ -51,7 +66,8 @@ export const useCartStore = defineStore("cartStore", () => {
         isLoading,
         clearState,
         getUserOrder,
-        clearCart
+        clearCart,
+        checkout
     }
 
 })
