@@ -9,9 +9,11 @@ export function useActiveProducts(userId: string) {
         const response = await UserOrderService.getUserOrder(userId)
 
         let activeProducts: string[] = []
-        response.data.products.forEach((productOrder) => {
-            activeProducts.push(productOrder.product_id._id)
-        })
+        if(response.data) {
+            response.data.products.forEach((productOrder) => {
+                activeProducts.push(productOrder.product_id._id)
+            })
+        }
 
         productStore.setActiveProducts(activeProducts)
     }

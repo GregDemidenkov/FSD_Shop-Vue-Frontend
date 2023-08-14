@@ -15,11 +15,14 @@
     const productStore = useProductStore()
 
     watch(
-        () => authStore.isAuth === true,
+        () => authStore.isAuth,
         () => {
-            const { getActiveProducts } = useActiveProducts(authStore.user.id)
-            getActiveProducts()
-        }
+            if(authStore.isAuth == true) {
+                const { getActiveProducts } = useActiveProducts(authStore.user.id)
+                getActiveProducts()
+            }
+        },
+        {immediate: true}
     )
 </script>
 
